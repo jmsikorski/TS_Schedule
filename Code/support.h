@@ -50,9 +50,9 @@ Chat::Chat() {
 
 class Schedule {
   public:
-    int comm_needs[48], res_needs[48], led_needs[48], total_needs[48];
-    int comm_avail[48], res_avail[48], led_avail[48], total_avail[48];
-    int comm_diff[48], res_diff[48], led_diff[48], total_diff[48];
+    double comm_needs[48], res_needs[48], led_needs[48], total_needs[48];
+    double comm_avail[48], res_avail[48], led_avail[48], total_avail[48];
+    double comm_diff[48], res_diff[48], led_diff[48], total_diff[48];
     string day;
 };
 
@@ -76,7 +76,6 @@ Shift::Shift(double s, double f, double e, double l, Chat c, Meet m) {
   meeting = m;
   for(int i = 0; i < 48; i++) {
     if(i >= s*2 && i < f*2) {
-      cout << "i: " << i << " cs: " << chatting.start*2 << endl;
       if(i >= chatting.start*2 && chatting.hours > 0) {
         job[i] = 'C';
         chatting.hours-=0.5;
@@ -105,7 +104,9 @@ Shift::Shift() {
 
 class Employee {
   public:
-    string fname, lname, skill;
+    string fname, lname;
+    char skill;
+    int id;
     Shift week[5];
     Train training;
 };
